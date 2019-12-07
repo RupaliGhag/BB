@@ -33,7 +33,7 @@ public class userServlet extends HttpServlet {
 		u.setPassword(pass);
 		
 		 boolean i=ud.addUser(u);
-		 
+		 System.out.println(u);
 		 if(i)
 		 {
 			 response.sendRedirect("login.jsp");

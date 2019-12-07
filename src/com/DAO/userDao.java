@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.Config.DBConnection;
+
 import com.POJO.userpojo;
 
 public class userDao {
@@ -93,7 +94,7 @@ public class userDao {
 	
 	public boolean deleteUser(String email)
 	{
-		String sql="delete from user where email=?";
+		String sql="delete from newuser where email=?";
 		try {
 			PreparedStatement ps=con.prepareStatement(sql);
 		ps.setString(1,email);
@@ -111,7 +112,7 @@ public class userDao {
 	}
 	public boolean updateUser(userpojo u )
 	{
-		String sql="update user set name=?,phoneNum =?,password=? where email=?";
+		String sql="update newuser set name=?,phoneNum =?,password=? where email=?";
 		try {
 			PreparedStatement ps=con.prepareStatement(sql);
 			ps.setString(1, u.getName());
@@ -128,6 +129,26 @@ public class userDao {
 			e.printStackTrace();
 		}
 		return false;
+		
+	}
+	public userpojo getLogin(String username,String password) {
+		String sql="SELECT email,password FROM newuser  where email=? and password=?";
+		userpojo u=new userpojo();
+		try {
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setString(1,username);
+			ps.setString(2, password);
+			
+			ResultSet rs=ps.executeQuery();
+			while (rs.next()) {
+				u.setEmail(rs.getString(1));
+				u.setPassword(rs.getString(2));
+			}
+			return u;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return u;
 		
 	}
 	

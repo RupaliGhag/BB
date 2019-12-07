@@ -8,13 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.Config.DBConnection;
+import com.POJO.ExpensesPOJO;
 import com.POJO.IncomePOJO;
 
 public class IncomeDao {
 	Connection con=DBConnection.getConnect();
 	public boolean addIncome(IncomePOJO i)
 	{
-		String sql="insert into income (income,incomeType,incomeDate,userEmail)values (?,?,?,?,?)";
+		String sql="insert into income (income,incomeType,incomeDate,userEmail)values (?,?,?,?)";
 		try {
 			PreparedStatement ps=con.prepareStatement(sql);
 			ps.setInt(1, i.getIncome());
@@ -32,12 +33,12 @@ public class IncomeDao {
 		return false;
 
 	}
-	public boolean deletIncome(String email)
+	public boolean deletIncome(String incomeId)
 	{
-		String sql="delete from income where email=?";
+		String sql="delete from income where incomeId=?";
 		try {
 			PreparedStatement ps=con.prepareStatement(sql);
-			ps.setString(1, email);
+			ps.setString(1, incomeId);
 			int i2=ps.executeUpdate();
 			if(i2>0)
 			{
@@ -77,5 +78,28 @@ public class IncomeDao {
 		
 	}
 	
+	public boolean updateIncome(IncomePOJO i)
+	{
+		String sql="update income set income=?,incomeType=?,incomeDate=? where  incomeId=?";
+		try {
+			PreparedStatement ps=con.prepareStatement(sql);
+			ps.setInt(1,i.getIncome());
+			ps.setString(2, i.getIncomeType());
+			ps.setString(3, i.getIncomeDate());
+			ps.setInt(4, i.getIncomeId());
+		
+
+		int i1=ps.executeUpdate();
+			if(i1>0)
+			{
+				return true;
+			}
+			
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		return false;
+		
+	}
 	
 }

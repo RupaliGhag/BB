@@ -1,10 +1,17 @@
 package com.POJO;
 
 public class ExpensesPOJO {
+	private int expenseId;
 	private int expenses;
 	private String expensesType;
 	private String expensesDate;
 	private String userEmail;
+	public int getExpenseId() {
+		return expenseId;
+	}
+	public void setExpenseId(int expenseId) {
+		this.expenseId = expenseId;
+	}
 	public int getExpenses() {
 		return expenses;
 	}
@@ -31,10 +38,9 @@ public class ExpensesPOJO {
 	}
 	@Override
 	public String toString() {
-		return "ExpensesPOJO [expenses=" + expenses + ", expensesType=" + expensesType + ", expensesDate="
-				+ expensesDate + ", userEmail=" + userEmail + ", getExpenses()=" + getExpenses()
-				+ ", getExpensesType()=" + getExpensesType() + ", getExpensesDate()=" + getExpensesDate()
-				+ ", getUserEmail()=" + getUserEmail() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+		return "ExpensesPOJO [expenseId=" + expenseId + ", expenses=" + expenses + ", expensesType=" + expensesType
+				+ ", expensesDate=" + expensesDate + ", userEmail=" + userEmail + "]";
 	}
+
+
 }

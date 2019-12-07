@@ -82,7 +82,7 @@ input[type="checkbox"] {
 </style>
 </head>
 <body>
-
+<jsp:include page="NavBar.jsp"></jsp:include>
 	<div class="container h-100vh">
 		<div class="row row h-100 align-items-center justify-content-centerr">
 			<div class="col align-self-cente ">
